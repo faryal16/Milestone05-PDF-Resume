@@ -38,13 +38,13 @@ var _a;
         var profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile) : '';
         // URL path
         var username = usernameElement.value;
-        var uniqurPath = "resumes/".concat(username.replace(/\s+/g, ' '), "_cv.html");
+        var uniquePath = "resumes/".concat(username.replace(/\s+/g, ' '), "_cv.html");
         // Creat Resume Output
         var resumeOutput = " <h1>DownloadAble Resume <br> By CodeWithFairy</h1>\n     <h2>Personal Information</h2>\n     ".concat(profilePictureURL ? "<img src=\"".concat(profilePictureURL, "\" alt=\"Profile Picture\" class=\"profilePicture\">") : '', "\n        <p><strong> Name: </strong><span> ").concat(name_1, " </span><p>\n        <p><strong> Email: </strong><span> ").concat(email, " </span> <p>\n        <p><strong> Contact: </strong><span> ").concat(phone, " </span> <p>\n        <p><strong> Address: </strong><span> ").concat(add, " </span> <p>\n        \n\n\n        <h2>Education</h2>\n        <p> ").concat(education, " </p>\n        \n\n        <h2>Experience</h2>\n        <p>").concat(experience, " </p>\n        \n\n        <h2>Skills</h2>\n      <p>").concat(skills, " </p>\n\n        \n\n      ");
         //   Creat download links
         var downloadLink = document.createElement('a');
         downloadLink.href = 'data:text/html;charset-utf-8,' + encodeURIComponent(resumeOutput);
-        downloadLink.download = uniqurPath;
+        downloadLink.download = uniquePath;
         downloadLink.textContent = 'Download Your Resume';
         // display The Resume  Output in contanier
         var resumeOutputElement = document.getElementById("resumeOutput");
@@ -64,7 +64,7 @@ var _a;
             buttonsContanier.appendChild(downloadButton);
             // Add Shareable Link Buttton
             var ShareLinkButton = document.createElement('button');
-            ShareLinkButton.textContent = 'Copy Link';
+            ShareLinkButton.textContent = 'Copy ShareAble Link';
             ShareLinkButton.addEventListener('click', function () {
                 try {
                     // Creat a Unique shareable Link (simulate in the case)

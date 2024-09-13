@@ -54,7 +54,7 @@ const profilePictureFile = profilePictureInput.files?.[0];
 const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictureFile) :'';
 // URL path
       const username = usernameElement.value;
-      const uniqurPath = `resumes/${username.replace(/\s+/g, ' ')}_cv.html`
+      const uniquePath = `resumes/${username.replace(/\s+/g, ' ')}_cv.html`
     
 
     // Creat Resume Output
@@ -89,7 +89,7 @@ const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictur
     
     const downloadLink = document.createElement('a');
     downloadLink.href = 'data:text/html;charset-utf-8,' + encodeURIComponent(resumeOutput)
-    downloadLink.download = uniqurPath;
+    downloadLink.download = uniquePath;
     downloadLink.textContent = 'Download Your Resume';
    
 
@@ -118,7 +118,7 @@ const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictur
 
       // Add Shareable Link Buttton
 const ShareLinkButton = document.createElement('button');
-ShareLinkButton.textContent = 'Copy Link';
+ShareLinkButton.textContent = 'Copy ShareAble Link';
 ShareLinkButton.addEventListener('click',function () {
     try {
 
