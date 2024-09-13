@@ -64,13 +64,13 @@ var _a;
             buttonsContanier.appendChild(downloadButton);
             // Add Shareable Link Buttton
             var ShareLinkButton = document.createElement('button');
-            ShareLinkButton.textContent = 'Copy Shareable Link';
+            ShareLinkButton.textContent = 'Copy Link';
             ShareLinkButton.addEventListener('click', function () {
                 try {
                     // Creat a Unique shareable Link (simulate in the case)
-                    var ShareableLink = "https://yourdomain.com/resumes/".concat(name_1.replace(/\s+/g, "_"), "_cv.html");
+                    var Link = "https://yourdomain.com/resumes/".concat(name_1.replace(/\s+/g, "_"), "_cv.html");
                     // Use Clipboard API to Copy  The Shareable LINK
-                    navigator.clipboard.writeText(ShareableLink);
+                    navigator.clipboard.writeText(Link);
                     alert('ShareAble Link copied To clipboard!');
                 }
                 catch (err) {
