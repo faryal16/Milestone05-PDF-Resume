@@ -15,6 +15,8 @@ var _a;
     var skillsElement = document.getElementById("skills");
     // COde for URL PATH
     var usernameElement = document.getElementById('username');
+    var shareableLinkElement = document.getElementById('shareable-link');
+    var shareableLinkContanier = document.getElementById('shareable-link-contanier');
     // Make a condition to get output
     if (profilePictureInput &&
         nameElement &&
@@ -46,10 +48,12 @@ var _a;
         downloadLink.href = 'data:text/html;charset-utf-8,' + encodeURIComponent(resumeOutput);
         downloadLink.download = uniquePath;
         downloadLink.textContent = 'Download Your Resume';
-        // display The Resume  Output in contanier
+        // // display The Resume  Output in contanier
         var resumeOutputElement = document.getElementById("resumeOutput");
         if (resumeOutputElement) {
             resumeOutputElement.innerHTML = resumeOutput;
+            resumeOutputElement.appendChild(downloadLink);
+            resumeOutputElement.style.display = 'block';
             resumeOutputElement.classList.remove('hidden');
             // create Contanier for buttons
             var buttonsContanier = document.createElement('div');
@@ -62,23 +66,20 @@ var _a;
                 window.print(); //Open the Print dialog, allowing the users to save as PDF
             });
             buttonsContanier.appendChild(downloadButton);
-            // Add Shareable Link Buttton
-            var ShareLinkButton = document.createElement('button');
-            ShareLinkButton.textContent = 'Copy ShareAble Link';
-            ShareLinkButton.addEventListener('click', function () {
-                try {
-                    // Creat a Unique shareable Link (simulate in the case)
-                    var Link = "https://yourdomain.com/resumes/".concat(name_1.replace(/\s+/g, "_"), "_cv.html");
-                    // Use Clipboard API to Copy  The Shareable LINK
-                    navigator.clipboard.writeText(Link);
-                    alert('ShareAble Link copied To clipboard!');
-                }
-                catch (err) {
-                    console.error('Failed to copy Link:', err);
-                    alert('Failed to copy link to Clipboard, Please try again.');
+            //   Generate  a shareable  URL with username  only
+            var shareableURL = "".concat(window.location.origin, "?username=").concat(encodeURIComponent(username));
+            // Display the  Shareable link
+            shareableLinkContanier.style.display = 'block';
+            shareableLinkElement.href = shareableURL;
+            shareableLinkElement.textContent = shareableURL;
+            // Prefillthe form based on the username in the URL
+            window.addEventListener('DOMContentLoaded', function () {
+                var urlParms = new URLSearchParams(window.location.search);
+                var username = urlParms.get('username');
+                if (username) {
+                    var savedResumeData = localStorage.getItem(username);
                 }
             });
-            buttonsContanier.appendChild(ShareLinkButton);
         }
         else {
             console.error('Resume output contanier not Found');

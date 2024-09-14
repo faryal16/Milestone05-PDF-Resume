@@ -1,4 +1,3 @@
-
 // // Listing element
 document
   .getElementById("resumeForm")
@@ -23,6 +22,8 @@ document
 // COde for URL PATH
 const usernameElement = document.getElementById('username') as HTMLInputElement
 
+const shareableLinkElement = document.getElementById('shareable-link') as HTMLAnchorElement
+const shareableLinkContanier = document.getElementById('shareable-link-contanier') as HTMLDivElement
 
 
 
@@ -94,11 +95,13 @@ const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictur
    
 
 
-// display The Resume  Output in contanier
+// // display The Resume  Output in contanier
     const resumeOutputElement = document.getElementById("resumeOutput");
     if (resumeOutputElement) {
       resumeOutputElement.innerHTML = resumeOutput;
       
+      resumeOutputElement.appendChild(downloadLink)
+      resumeOutputElement.style.display = 'block' 
       resumeOutputElement.classList.remove('hidden');
 
       // create Contanier for buttons
@@ -116,24 +119,25 @@ const profilePictureURL = profilePictureFile ? URL.createObjectURL(profilePictur
       });
       buttonsContanier.appendChild(downloadButton);
 
-      // Add Shareable Link Buttton
-const ShareLinkButton = document.createElement('button');
-ShareLinkButton.textContent = 'Copy ShareAble Link';
-ShareLinkButton.addEventListener('click',function () {
-    try {
+    //   Generate  a shareable  URL with username  only
+    const shareableURL = `${window.location.origin}?username=${encodeURIComponent(username)}`;
 
-      // Creat a Unique shareable Link (simulate in the case)
-      const Link = `https://yourdomain.com/resumes/${name.replace(/\s+/g, "_")}_cv.html`;
+    // Display the  Shareable link
 
-      // Use Clipboard API to Copy  The Shareable LINK
-      navigator.clipboard.writeText(Link);
-      alert('ShareAble Link copied To clipboard!');
-    } catch (err) {
-      console.error('Failed to copy Link:', err);
-      alert('Failed to copy link to Clipboard, Please try again.');
+    shareableLinkContanier.style.display = 'block';
+    shareableLinkElement.href = shareableURL;
+    shareableLinkElement.textContent = shareableURL
+
+// Prefillthe form based on the username in the URL
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParms = new URLSearchParams(window.location.search);
+    const username = urlParms.get('username');
+    if(username){
+        const savedResumeData = localStorage.getItem(username);
     }
-  });
-buttonsContanier.appendChild(ShareLinkButton);
+})
+
+
 
     }else{
       console.error('Resume output contanier not Found')

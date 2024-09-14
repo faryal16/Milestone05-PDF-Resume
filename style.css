@@ -162,5 +162,14 @@ body{
         #resumeOutput button{
             display: none;
         }
-        
+        #shareable-link-contanier h2, p1{
+            display: none;
+        }
+        #shareable-link{
+            display: none;
+        }
+        a {
+        display: none;
+     }   
     }
+    
